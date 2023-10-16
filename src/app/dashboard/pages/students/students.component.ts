@@ -63,5 +63,4 @@ export class StudentsComponent {
   deleteStudent(idStudent : number){
     this.student = this.student.filter((u) => u.id !== idStudent);
   }
-
 }

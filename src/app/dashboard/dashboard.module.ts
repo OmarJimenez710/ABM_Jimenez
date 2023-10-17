@@ -5,6 +5,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { StudentsModule } from './pages/students/students.module'
 import { SharedModule } from '../shared/shared.module';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     MatSidenavModule,
     MatToolbarModule,
     SharedModule,
-    StudentsModule
+    StudentsModule,
+    HomeModule
   ],
   exports: [
     DashboardComponent

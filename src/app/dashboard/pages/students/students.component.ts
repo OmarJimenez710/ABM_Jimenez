@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDilogComponent } from './components/student-dilog/student-dilog.component';
 import { FormGroup } from '@angular/forms';
 import { Student } from './models';
+import { StudentsService } from './students.service';
+import { ApiUrlConfig, apiUrl } from 'src/app/config/url.token';
 
 @Component({
   selector: 'app-students',
@@ -14,24 +16,15 @@ export class StudentsComponent {
   lastName : string = '';
   email : string = '';
 
-  student : Student[] = [
-    {
-      id: 1,
-      name : 'Naruto',
-      lastname : 'Uzumaki',
-      email : 'rasengan@gmail.com'
-    },
-    {
-      id: 2,
-      name : 'Sasuke',
-      lastname : 'Uchiha',
-      email : 'chidori@gmail.com'
-    }
-  ];
-
+  student : Student[] = [];
   constructor(
-    private studentDialog : MatDialog
-  ){}
+    @Inject(apiUrl) private url : ApiUrlConfig,
+    private studentDialog : MatDialog,
+    private studentService : StudentsService
+  ){
+    console.log("La url inyectada es :" + this.url.url);
+    this.student = this.studentService.getStudents();
+  }
 
   addStudent() : void {
     this.studentDialog.open(StudentDilogComponent).afterClosed().subscribe({

@@ -1,6 +1,6 @@
 <div class="row m-5">
     <div class="col-12">
-        <button mat-raised-button color="primary" (click)="addStudent()">
+        <button mat-raised-button color="primary">
             <mat-icon> add_circle </mat-icon>
             Agregar Estudiante 
         </button>
@@ -10,7 +10,11 @@
 <!-- {{student | fullname : 'uppercase'}} -->
 
 <app-student-table 
-    [dataSource]="student" 
+    [dataSource]="(student | async) || []" >
+</app-student-table>
+
+<!--
+    (click)="addStudent()"
     (editUser) = "editStudent($event)"
     (deleteUser) = "deleteStudent($event)">
-</app-student-table>
+-->
